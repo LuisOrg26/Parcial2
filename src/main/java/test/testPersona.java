@@ -8,6 +8,6 @@ public class testPersona {
         System.out.println(empleado1.toString());
         System.out.println(cliente1.toString());
         System.out.println(proveedor1.toString());
-
+        System.out.println("");
     }
 }
