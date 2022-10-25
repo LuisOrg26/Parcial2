@@ -42,6 +42,9 @@ public class Persona {
         this.edad = age();
         this.RFC = RFC;
     }
+    public int getId() {
+        return id;
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -76,6 +79,10 @@ public class Persona {
 
     public void setFecha(String fecha) {
         this.fecha = fecha;
+    }
+
+    public int getEdad() {
+        return edad;
     }
 
     public String getEmail() {

@@ -21,7 +21,7 @@ public class Cliente extends Persona{
     }
 
     //Seleccionar
-    public Cliente(int DiasCredito, String Metodo, String Tipo, int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, String RFC) {
+    public Cliente(int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, String RFC,int DiasCredito, String Metodo, String Tipo) {
         super(id, nombre, apellidop, apellidom, email, telefono, fecha, RFC);
         this.DiasCredito = DiasCredito;
         this.Metodo = Metodo;
