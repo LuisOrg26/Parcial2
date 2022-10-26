@@ -7,7 +7,7 @@ import static Data.Conexion.*;
 
 public class ClienteDao {
     private static final String SQL_SELECT = "SELECT id, nombre, apellidop, apellidom, email, telefono, fecha, edad, RFC, DiasCredito, Metodo, Tipo FROM cliente";
-    private static final String SQL_INSERT = "INSERT INTO cliente(nombre, apellidop, apellidom, email, telefono, fecha, edad, RFC, DiasCredito, Metodo, Tipo) VALUES(?,?,?,?,?,?,?,?,?,?)";
+    private static final String SQL_INSERT = "INSERT INTO cliente(id, nombre, apellidop, apellidom, email, telefono, fecha, edad, RFC, DiasCredito, Metodo, Tipo) VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
     private static final String SQL_UPDATE = "UPDATE cliente SET nombre=?, apellidop=?, apellidom=?, email=?, telefono=?, fecha=?, edad=?, RFC=?, DiasCredito=?, Metodo=?, Tipo=? WHERE id=?";
     private static final String SQL_DELETE = "DELETE FROM cliente WHERE id=?";
 
@@ -62,17 +62,18 @@ public class ClienteDao {
         try {
             conn = getConnection();
             stmt = conn.prepareStatement(SQL_INSERT);
-            stmt.setString(1, cliente.getNombre());
-            stmt.setString(2, cliente.getApellidop());
-            stmt.setString(3, cliente.getApellidom());
-            stmt.setString(4, cliente.getEmail());
-            stmt.setString(5, cliente.getTelefono());
-            stmt.setString(6, cliente.getFecha());
-            stmt.setInt(7, cliente.getEdad());
-            stmt.setString(8, cliente.getRFC());
-            stmt.setInt(9, cliente.getDiasCredito());
-            stmt.setString(10, cliente.getMetodo());
-            stmt.setString(11, cliente.getTipo());
+            stmt.setInt(1, cliente.getId());
+            stmt.setString(2, cliente.getNombre());
+            stmt.setString(3, cliente.getApellidop());
+            stmt.setString(4, cliente.getApellidom());
+            stmt.setString(5, cliente.getEmail());
+            stmt.setString(6, cliente.getTelefono());
+            stmt.setString(7, cliente.getFecha());
+            stmt.setInt(8, cliente.getEdad());
+            stmt.setString(9, cliente.getRFC());
+            stmt.setInt(10, cliente.getDiasCredito());
+            stmt.setString(11, cliente.getMetodo());
+            stmt.setString(12, cliente.getTipo());
             registros = stmt.executeUpdate();
         } catch (SQLException ex) {
             ex.printStackTrace(System.out);
