@@ -1,7 +1,7 @@
 package test;
 import domain.Proveedor;
 import Data.ProveedorDao;
-
+import java.util.List;
 import java.util.Scanner;
 
 public class Test {
@@ -102,8 +102,60 @@ public class Test {
                     System.out.println("Actualizar");
                     System.out.println("Ingrese el id del proveedor");
                     int id = scanner.nextInt();
-                    break;
+                    System.out.println("Ingrese el nombre");//Hecho
+                    String nombre1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido paterno");//Hecho
+                    String apellidoPaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido materno");//Hecho
+                    String apellidoMaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el correo");//Hecho
+                    String correo1 = validacioncorreo(scanner.next());
+                    System.out.println("Ingrese el telefono");//Hecho
+                    String telefono1 = validaciontelefono(scanner.next());
+                    System.out.println("Ingrese la fecha de nacimiento");//Hecho
+                    System.out.println("Ejemplo: 1999-12-31");
+                    String fechaNacimiento1 = validacionfecha(scanner.next());
+                    System.out.println("Ingrese el RFC");//Hecho
+                    String RFC1 = validacionRFC(scanner.next());
+                    System.out.println("Ingrese el dia de entrega");//Hecho
+                    System.out.println("Ejemplo: Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo");
+                    String diaVisita1 = validacionentrega(scanner.next());
+                    System.out.println("Ingrese el limite de credito");//Hecho
+                    double limiteCredito1 = 0;
+                    while(true) {
+                        try {
+                            limiteCredito1 = validaciondouble(scanner.nextDouble());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Ingrese un numero valido");
+                            continue;
+                        }
+                    }
+                    System.out.println("Ingrese el tipo de proveedor");//Hecho
+                    String tipoProveedor1 = validacion(scanner.next());
 
+                    Proveedor proveedor = new Proveedor(nombre1, apellidoPaterno1, apellidoMaterno1, correo1, telefono1, fechaNacimiento1, RFC1, diaVisita1, limiteCredito1, tipoProveedor1);
+                    ProveedorDao proveedorDao1 = new ProveedorDao();
+                    proveedorDao1.actualizar(proveedor);
+
+                    break;
+                    case 3:
+                    System.out.println("Eliminar");
+                    System.out.println("Ingrese el id del proveedor");
+                    int id1 = scanner.nextInt();
+                    Proveedor proveedor1 = new Proveedor(id1);
+                    ProveedorDao proveedorDao2 = new ProveedorDao();
+                    proveedorDao2.eliminar(proveedor1);
+                    break;
+                case 4:
+                    System.out.println("Listar");
+                    ProveedorDao proveedorDao3 = new ProveedorDao();
+                    List<Proveedor> proveedores = proveedorDao3.seleccionar();
+                    proveedores.forEach(proveedor2 -> {
+                        System.out.println(proveedor2);
+                    });
+
+                    break;
                 case 5:
                     System.out.println("Gracias por usar la seccion de proveedores");
                     break;
@@ -124,15 +176,21 @@ public class Test {
                 System.out.println("El dato no puede estar vacio");
                 System.out.println("Ingrese el dato nuevamente");
                 dato = scanner.next();
-            }else if(dato.matches("[0-9]*")){
-                System.out.println("El dato no puede ser numerico");
+            }else if(dato.matches("[a-zA-Z]*")) {
+                return dato;
+            } else if(dato.matches("[a-zA-Z0-9]*")){
+                    System.out.println("El dato no puede tener numeros");
+                    System.out.println("Ingrese el dato nuevamente");
+                    dato = scanner.next();
+
+            }else if(!dato.matches("[a-zA-Z]*")){
+                System.out.println("El dato no puede tener caracteres especiales");
                 System.out.println("Ingrese el dato nuevamente");
                 dato = scanner.next();
-            }else if(dato.matches("[a-zA-Z]*")){
-                break;
+
             }
         }
-        return dato;
+
     }
 
     private static double validaciondouble(double dato){
@@ -148,22 +206,28 @@ public class Test {
                 dato = scanner.nextDouble();
 
             } else if(dato > 0){
-                break;
-
+                return dato;
             }
+
         }
-        return dato;
     }
 
     private static String validacionentrega(String dato){
         while(true) {
-            if (dato == "Lunes" || dato == "Martes" || dato == "Miercoles" || dato == "Jueves" || dato == "Viernes" || dato == "Sabado" || dato == "Domingo") {
-                return dato;
-            }else{
-                System.out.println("Ingrese un dia valido de entrega");
-                System.out.println("Ejemplo: Lunes");
-                Scanner scanner = new Scanner(System.in);
-                dato = scanner.next();
+            switch (dato) {
+                case "Lunes": return dato;
+                case "Martes": return dato;
+                case "Miercoles": return dato;
+                case "Jueves": return dato;
+                case "Viernes": return dato;
+                case "Sabado": return dato;
+                case "Domingo": return dato;
+                default:
+                    System.out.println("El dato no es valido");
+                    System.out.println("Ingrese el dato nuevamente");
+                    Scanner scanner = new Scanner(System.in);
+                    dato = scanner.next();
+                    break;
             }
         }
     }
@@ -196,10 +260,10 @@ public class Test {
 
     private static String validacioncorreo(String dato){
         while(true) {
-            if (dato.matches("'[a-z0-9]+@[a-z]+\\.[a-z]{2,3}'" )) {
+            if (dato.matches("^[a-z0-9]*+@[a-z]*+.[a-z]{2,3}$" )) {
                 return dato;
             }else{
-                System.out.println("Ingrese un numero de telefono valido de 10 caracteres");
+                System.out.println("Ingrese un correo valido");
                 System.out.println("Ejemplo: luisjaorg26@gmail.com");
                 Scanner scanner = new Scanner(System.in);
                 dato = scanner.next();
