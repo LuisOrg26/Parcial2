@@ -524,7 +524,7 @@ public class Test {
 
     private static String validacioncorreo(String dato){
         while(true) {
-            if (dato.matches("^[a-z0-9]*+@[a-z]*+.[a-z]{2,3}$" )) {
+            if (dato.matches("^([a-z0-9])?(.[a-z0-9])+@[a-z]+.[a-z]{2,3}+.?([a-z]{2,3}$)")) {
                 return dato;
             }else{
                 System.out.println("Ingrese un correo valido");
@@ -537,7 +537,7 @@ public class Test {
 
     private static String validacionfecha(String dato){
         while(true) {
-            if (dato.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}" )) {
+            if (dato.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
                 return dato;
             }else{
                 System.out.println("Ingrese una fecha valida");
@@ -602,9 +602,7 @@ public class Test {
             } else if(dato > 0){
                 return dato;
             }
-
         }
     }
-
 }
 
