@@ -1,4 +1,8 @@
 package test;
+import Data.ClienteDao;
+import Data.EmpleadoDao;
+import domain.Cliente;
+import domain.Empleado;
 import domain.Proveedor;
 import Data.ProveedorDao;
 import java.util.List;
@@ -41,9 +45,232 @@ public class Test {
     }
 
     private static void cliente() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenido a la tabla de clientes");
+        int opcion = 0;
+        while (opcion != 5) {
+            System.out.println("Ingrese el numero de la accion que desea realizar");
+            System.out.println("1. Insertar");
+            System.out.println("2. Actualizar");
+            System.out.println("3. Eliminar");
+            System.out.println("4. Consultar");
+            System.out.println("5. Salir");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Insertar");
+                    System.out.println("Ingrese el nombre");
+                    String nombre = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido paterno");
+                    String apellidoPaterno = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido materno");
+                    String apellidoMaterno = validacion(scanner.next());
+                    System.out.println("Ingrese el email");
+                    String email = validacioncorreo(scanner.next());
+                    System.out.println("Ingrese el telefono");
+                    String telefono = validaciontelefono(scanner.next());
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    String fecha = validacionfecha(scanner.next());
+                    System.out.println("Ingrese el RFC");
+                    String RFC = validacionRFC(scanner.next());
+                    System.out.println("Dias de credito");
+                    int diasCredito = validacionint(scanner.nextInt());
+                    System.out.println("Metodo de pago");
+                    System.out.println("1. Efectivo");
+                    System.out.println("2. Tarjeta");
+                    System.out.println("3. Cheque");
+                    String metodopago = "";
+                    while(true){
+                        try {
+                            int metodo = validacionint(scanner.nextInt());
+                            if (metodo == 1) {
+                                metodopago = "Efectivo";
+                                break;
+                            } else if (metodo == 2) {
+                                metodopago = "Tarjeta";
+                                break;
+                            } else if (metodo == 3) {
+                                metodopago = "Cheque";
+                                break;
+                            } else {
+                                System.out.println("Elige un numero valido");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Ingresa un entero");
+                        }
+                    }
+                    String persona = "";
+                    if(RFC.length() == 13){
+                        persona = "Fisica";
+                    }else if(RFC.length() == 12){
+                        persona = "Moral";
+                    }
+
+                    Cliente nuevoCliente = new Cliente(nombre, apellidoPaterno, apellidoMaterno, email, telefono, fecha, RFC, diasCredito, metodopago, persona);
+                    ClienteDao clienteDao = new ClienteDao();
+                    clienteDao.insertar(nuevoCliente);
+                    break;
+                case 2:
+                    System.out.println("Actualizar");
+                    System.out.println("Ingrese el id del cliente");
+                    int id = validacionint(scanner.nextInt());
+                    System.out.println("Ingrese el nombre");
+                    String nombre1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido paterno");
+                    String apellidoPaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido materno");
+                    String apellidoMaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el email");
+                    String email1 = validacioncorreo(scanner.next());
+                    System.out.println("Ingrese el telefono");
+                    String telefono1 = validaciontelefono(scanner.next());
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    String fecha1 = validacionfecha(scanner.next());
+                    System.out.println("Ingrese el RFC");
+                    String RFC1 = validacionRFC(scanner.next());
+                    System.out.println("Dias de credito");
+                    int diasCredito1 = validacionint(scanner.nextInt());
+                    System.out.println("Metodo de pago");
+                    System.out.println("1. Efectivo");
+                    System.out.println("2. Tarjeta");
+                    System.out.println("3. Cheque");
+                    String metodopago1 = "";
+                    while(true){
+                        try {
+                            int metodo = validacionint(scanner.nextInt());
+                            if (metodo == 1) {
+                                metodopago1 = "Efectivo";
+                                break;
+                            } else if (metodo == 2) {
+                                metodopago1 = "Tarjeta";
+                                break;
+                            } else if (metodo == 3) {
+                                metodopago1 = "Cheque";
+                                break;
+                            } else {
+                                System.out.println("Elige un numero valido");
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Ingresa un entero");
+                        }
+                    }
+                    String persona1 = "";
+                    if(RFC1.length() == 13){
+                        persona1 = "Fisica";
+                    }else if(RFC1.length() == 12){
+                        persona1 = "Moral";
+                    }
+
+                    Cliente nuevoCliente1 = new Cliente(id, nombre1, apellidoPaterno1, apellidoMaterno1, email1, telefono1, fecha1, RFC1, diasCredito1, metodopago1, persona1);
+                    ClienteDao clienteDao1 = new ClienteDao();
+                    clienteDao1.actualizar(nuevoCliente1);
+
+                    System.out.println("Cliente actualizado");
+                    break;
+                case 3:
+                    System.out.println("Eliminar");
+                    System.out.println("Ingrese el id del cliente que desea eliminar");
+                    int id1 = validacionint(scanner.nextInt());
+                    ClienteDao clienteDao8 = new ClienteDao();
+                    Cliente eliminarCliente = new Cliente(id1);
+                    clienteDao8.eliminar(eliminarCliente);
+                    break;
+                case 4:
+                    System.out.println("Listar");
+                    ClienteDao clienteDao3 = new ClienteDao();
+                    List<Cliente> clientes = clienteDao3.seleccionar();
+                    clientes.forEach(cliente -> {
+                        System.out.println(cliente);
+                    });
+                case 5:
+                    System.out.println("Gracias por usar la tabla de clientes");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
+            }
+        }
     }
 
     private static void empleado() {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Bienvenido a la base de datos de empleados");
+        int opcion = 0;
+        while (opcion != 5) {
+            System.out.println("Ingrese el numero de la accion que desea realizar");
+            System.out.println("1. Insertar");
+            System.out.println("2. Actualizar");
+            System.out.println("3. Eliminar");
+            System.out.println("4. Consultar");
+            System.out.println("5. Salir");
+            opcion = scanner.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("Insertar");
+                    System.out.println("Ingrese el nombre");
+                    String nombre = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido paterno");
+                    String apellidoPaterno = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido materno");
+                    String apellidoMaterno = validacion(scanner.next());
+                    System.out.println("Ingrese el email");
+                    String email = validacioncorreo(scanner.next());
+                    System.out.println("Ingrese el telefono");
+                    String telefono = validaciontelefono(scanner.next());
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    System.out.println("Ejemplo: 1999-12-31");
+                    String fecha = validacionfecha(scanner.next());
+                    System.out.println("Ingrese el RFC");
+                    String RFC = validacionRFC(scanner.next());
+                    System.out.println("Ingrese el numero de seguro social");
+                    String NSS = validacionNSS(scanner.next());
+                    System.out.println("Ingrese el CURP");
+                    String CURP = validacionCURP(scanner.next());
+                    System.out.println("Ingrese la antiguedad");
+                    int antiguedad = 0;
+                    while (true) {
+                        try {
+                            antiguedad = validacionint(scanner.nextInt());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Ingrese un entero");
+                        }
+                    }
+                    System.out.println("Ingrese el puesto");
+                    String puesto = validacion(scanner.next());
+
+                    Empleado nuevoEmpleado = new Empleado(nombre, apellidoPaterno, apellidoMaterno, email, telefono, fecha, RFC, NSS, CURP, antiguedad, puesto);
+                    EmpleadoDao empleadoDao = new EmpleadoDao();
+                    empleadoDao.insertar(nuevoEmpleado);
+                    System.out.println("Empleado insertado");
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+                    System.out.println("Eliminar");
+                    System.out.println("Ingrese el id del empleado que desea eliminar");
+                    int id = validacionint(scanner.nextInt());
+                    EmpleadoDao empleadoDao1 = new EmpleadoDao();
+                    Empleado eliminarEmpleado = new Empleado(id);
+                    empleadoDao1.eliminar(eliminarEmpleado);
+                    System.out.println("Empleado eliminado");
+                    break;
+                case 4:
+                    System.out.println("Consultar");
+                    EmpleadoDao empleadoDao3 = new EmpleadoDao();
+                    List<Empleado> empleados = empleadoDao3.seleccionar();
+                    empleados.forEach(empleado -> {
+                        System.out.println(empleado);
+                    });
+                case 5:
+                    System.out.println("Gracias por usar la tabla de empleados");
+                    break;
+                default:
+                    System.out.println("Opcion no valida");
+                    break;
+            }
+        }
     }
 
     private static void proveedor() {
@@ -134,7 +361,7 @@ public class Test {
                     System.out.println("Ingrese el tipo de proveedor");//Hecho
                     String tipoProveedor1 = validacion(scanner.next());
 
-                    Proveedor proveedor = new Proveedor(nombre1, apellidoPaterno1, apellidoMaterno1, correo1, telefono1, fechaNacimiento1, RFC1, diaVisita1, limiteCredito1, tipoProveedor1);
+                    Proveedor proveedor = new Proveedor(id, nombre1, apellidoPaterno1, apellidoMaterno1, correo1, telefono1, fechaNacimiento1, RFC1, diaVisita1, limiteCredito1, tipoProveedor1);
                     ProveedorDao proveedorDao1 = new ProveedorDao();
                     proveedorDao1.actualizar(proveedor);
 
@@ -323,7 +550,24 @@ public class Test {
         }
     }
 
+    private static int validacionint(int dato){
+        Scanner scanner = new Scanner(System.in);
+        while (true){
+            if (dato == 0) {
+                System.out.println("El dato no puede ser 0");
+                System.out.println("Ingrese el dato nuevamente");
+                dato = scanner.nextInt();
+            }else if(dato < 0){
+                System.out.println("El dato no puede ser negativo");
+                System.out.println("Ingrese el dato nuevamente");
+                dato = scanner.nextInt();
 
+            } else if(dato > 0){
+                return dato;
+            }
+
+        }
+    }
 
 }
 

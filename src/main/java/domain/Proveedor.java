@@ -21,6 +21,13 @@ public class Proveedor extends Persona{
         this.Categoria = Categoria;
     }
 
+    public Proveedor(int id,String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, String RFC, String DiasEntrega, double CreditoD, String Categoria) {
+        super(nombre, apellidop, apellidom, email, telefono, fecha, RFC);
+        this.DiasEntrega = DiasEntrega;
+        this.CreditoD = CreditoD;
+        this.Categoria = Categoria;
+    }
+
     //Seleccionar
     public Proveedor(int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, int edad, String RFC, String DiasEntrega, double CreditoD, String Categoria) {
         super(id, nombre, apellidop, apellidom, email, telefono, fecha, RFC);
