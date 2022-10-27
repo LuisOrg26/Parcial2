@@ -5,6 +5,8 @@ import domain.Cliente;
 import domain.Empleado;
 import domain.Proveedor;
 import Data.ProveedorDao;
+
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -19,24 +21,33 @@ public class Test {
             System.out.println("2. Cliente");
             System.out.println("3. Empleado");
             System.out.println("4. Salir");
-            opcion = scanner.nextInt();
-            switch (opcion) {
-                case 1:
-                    proveedor();
+            while (true){
+                try {
+                    String opcionstring = scanner.next();
+                    opcion = Integer.parseInt(opcionstring);
                     break;
-                case 2:
-                    cliente();
-                    break;
-                case 3:
-                    empleado();
-                    break;
-                case 4:
-                    System.out.println("Gracias por usar la base de datos");
-                    break;
-                default:
+                } catch (Exception e) {
                     System.out.println("Opcion no valida");
-                    break;
-            }
+                    opcion = 0;
+                }
+        }
+                switch (opcion) {
+                    case 1:
+                        proveedor();
+                        break;
+                    case 2:
+                        cliente();
+                        break;
+                    case 3:
+                        empleado();
+                        break;
+                    case 4:
+                        System.out.println("Gracias por usar la base de datos");
+                        break;
+                    default:
+                        System.out.println("Opcion no valida");
+                        break;
+                }
 
 
         }
@@ -46,7 +57,7 @@ public class Test {
 
     private static void cliente() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvenido a la base datos de clientes");
+        System.out.println("Bienvenido a la seccion de clientes");
         int opcion = 0;
         while (opcion != 5) {
             System.out.println("Ingrese el numero de la accion que desea realizar");
@@ -55,29 +66,39 @@ public class Test {
             System.out.println("3. Eliminar");
             System.out.println("4. Consultar");
             System.out.println("5. Salir");
-            opcion = scanner.nextInt();
+            while (true) {
+                try {
+                    String opcionstring = scanner.next();
+                    opcion = Integer.parseInt(opcionstring);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Opcion no valida");
+                    opcion = 0;
+                }
+            }
+
             switch (opcion) {
                 case 1:
                     System.out.println("Insertar");
                     System.out.println("Ingrese el nombre");
                     String nombre = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");
+                    System.out.println("Ingrese el apellido paterno");
                     String apellidoPaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");
+                    System.out.println("Ingrese el apellido materno");
                     String apellidoMaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el email");
-                    System.out.println("Por ejemplo: programacionOB@gamil.com");
+                    System.out.println("Ingrese el email");
+                    System.out.println("Ejemplo: programacionOB@gamil.com");
                     String email = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");
+                    System.out.println("Ingrese el telefono");
                     String telefono = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");
-                    System.out.println("AAAA-MM-DD");
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    System.out.println("Ejemplo: AAAA-MM-DD");
                     String fecha = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");
+                    System.out.println("Ingrese el RFC");
                     String RFC = validacionRFC(scanner.next());
-                    System.out.println("/nDias de credito");
+                    System.out.println("Dias de credito");
                     int diasCredito = validacionint(scanner.nextInt());
-                    System.out.println("/nMetodo de pago");
+                    System.out.println("Metodo de pago");
                     System.out.println("1. Efectivo");
                     System.out.println("2. Tarjeta");
                     System.out.println("3. Cheque");
@@ -126,23 +147,25 @@ public class Test {
                             System.out.println("Ingresa un entero");
                         }
                     }
-                    System.out.println("/nIngrese el nombre");
+                    System.out.println("Ingrese el nombre");
                     String nombre1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");
+                    System.out.println("Ingrese el apellido paterno");
                     String apellidoPaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");
+                    System.out.println("Ingrese el apellido materno");
                     String apellidoMaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el email");
+                    System.out.println("Ingrese el email");
+                    System.out.println("Ejemplo: programacionOB2@gmail.com");
                     String email1 = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");
+                    System.out.println("Ingrese el telefono");
                     String telefono1 = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    System.out.println("Ejemplo: AAAA-MM-DD");
                     String fecha1 = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");
+                    System.out.println("Ingrese el RFC");
                     String RFC1 = validacionRFC(scanner.next());
-                    System.out.println("/nDias de credito");
+                    System.out.println("Dias de credito");
                     int diasCredito1 = validacionint(scanner.nextInt());
-                    System.out.println("/nMetodo de pago");
+                    System.out.println("Metodo de pago");
                     System.out.println("1. Efectivo");
                     System.out.println("2. Tarjeta");
                     System.out.println("3. Cheque");
@@ -196,7 +219,7 @@ public class Test {
                     }
 
 
-                    System.out.println("/nCliente eliminado con exito");
+                    System.out.println("Cliente eliminado con exito");
                     break;
                 case 4:
                     System.out.println("Consultar");
@@ -207,7 +230,7 @@ public class Test {
                     });
                     break;
                 case 5:
-                    System.out.println("Saliendo de Cliente");
+                    System.out.println("Gracias por usar la seccion de clientes");
                     break;
                 default:
                     System.out.println("Opcion no valida");
@@ -218,7 +241,7 @@ public class Test {
 
     private static void empleado() {
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Bienvenido a la base de datos de empleados");
+        System.out.println("Bienvenido a la seccion de empleados");
         int opcion = 0;
         while (opcion != 5) {
             System.out.println("Ingrese el numero de la accion que desea realizar");
@@ -227,41 +250,50 @@ public class Test {
             System.out.println("3. Eliminar");
             System.out.println("4. Consultar");
             System.out.println("5. Salir");
-            opcion = scanner.nextInt();
+            while (true) {
+                try {
+                    String opcionstring = scanner.next();
+                    opcion = Integer.parseInt(opcionstring);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Opcion no valida");
+                    opcion = 0;
+                }
+            }
             switch (opcion) {
                 case 1:
                     System.out.println("Insertar");
                     System.out.println("Ingrese el nombre");
                     String nombre = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");
+                    System.out.println("Ingrese el apellido paterno");
                     String apellidoPaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");
+                    System.out.println("Ingrese el apellido materno");
                     String apellidoMaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el email");
+                    System.out.println("Ingrese el email");
                     System.out.println("Ejemplo: ProgramacionOB2@gmail.com");
                     String email = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");
+                    System.out.println("Ingrese el telefono");
                     String telefono = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");
+                    System.out.println("Ingrese la fecha de nacimiento");
                     System.out.println("Ejemplo: AAAA-MM-DD");
                     String fecha = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");
+                    System.out.println("Ingrese el RFC");
                     String RFC = validacionRFC(scanner.next());
-                    System.out.println("/nIngrese el numero de seguro social");
+                    System.out.println("Ingrese el numero de seguro social");
                     String NSS = validacionNSS(scanner.next());
-                    System.out.println("/nIngrese el CURP");
+                    System.out.println("Ingrese el CURP");
                     String CURP = validacionCURP(scanner.next());
-                    System.out.println("/nIngrese la antiguedad");
+                    System.out.println("Ingrese la antiguedad");
                     int antiguedad = 0;
                     while (true) {
                         try {
                             antiguedad = validacionint(scanner.nextInt());
                             break;
                         } catch (Exception e) {
-                            System.out.println("In/ngrese un entero");
+                            System.out.println("Ingrese un entero");
                         }
                     }
-                    System.out.println("/nIngrese el puesto");
+                    System.out.println("Ingrese el puesto");
                     String puesto = validacion(scanner.next());
 
                     Empleado nuevoEmpleado = new Empleado(nombre, apellidoPaterno, apellidoMaterno, email, telefono, fecha, RFC, NSS, CURP, antiguedad, puesto);
@@ -271,7 +303,7 @@ public class Test {
                     break;
                 case 2:
                     System.out.println("Actualizar");
-                    System.out.println("/nIngrese el id del empleado que desea actualizar");
+                    System.out.println("Ingrese el id del empleado que desea actualizar");
                     //int id1 = validacionint(scanner.nextInt());
                     int id1 = 0;
                     while (true) {
@@ -282,27 +314,27 @@ public class Test {
                             System.out.println("Ingrese un entero");
                         }
                     }
-                    System.out.println("/nIngrese el nombre");
+                    System.out.println("Ingrese el nombre");
                     String nombre1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");
+                    System.out.println("Ingrese el apellido paterno");
                     String apellidoPaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");
+                    System.out.println("Ingrese el apellido materno");
                     String apellidoMaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el email");
+                    System.out.println("Ingrese el email");
                     System.out.println("Ejemplo: programacionOB2@gmai.com");
                     String email1 = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");
+                    System.out.println("Ingrese el telefono");
                     String telefono1 = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");
+                    System.out.println("Ingrese la fecha de nacimiento");
                     System.out.println("Ejemplo: AAAA-MM-DD");
                     String fecha1 = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");
+                    System.out.println("Ingrese el RFC");
                     String RFC1 = validacionRFC(scanner.next());
-                    System.out.println("/nIngrese el numero de seguro social");
+                    System.out.println("Ingrese el numero de seguro social");
                     String NSS1 = validacionNSS(scanner.next());
-                    System.out.println("/nIngrese el CURP");
+                    System.out.println("Ingrese el CURP");
                     String CURP1 = validacionCURP(scanner.next());
-                    System.out.println("/nIngrese la antiguedad");
+                    System.out.println("Ingrese la antiguedad");
                     int antiguedad1 = 0;
                     while (true) {
                         try {
@@ -312,7 +344,7 @@ public class Test {
                             System.out.println("Ingrese un entero");
                         }
                     }
-                    System.out.println("/nIngrese el puesto");
+                    System.out.println("Ingrese el puesto");
                     String puesto1 = validacion(scanner.next());
 
                     EmpleadoDao empleadoDao7 = new EmpleadoDao();
@@ -346,7 +378,7 @@ public class Test {
                         System.out.println(empleado+ "\n");
                     });
                 case 5:
-                    System.out.println("Gracias por usar la base de datos de empleados");
+                    System.out.println("Gracias por usar la seccion de empleados");
                     break;
                 default:
                     System.out.println("Opcion no valida");
@@ -356,7 +388,7 @@ public class Test {
     }
 
     private static void proveedor() {
-        System.out.println("Bienvenido a la base de datos de proveedores");
+        System.out.println("Bienvenido a la seccion de proveedores");
         int opcionc = 0;
         while (opcionc != 5) {
             System.out.println("Elija una opcion");
@@ -366,30 +398,39 @@ public class Test {
             System.out.println("4. Consultar");
             System.out.println("5. Salir");
             Scanner scanner = new Scanner(System.in);
-            opcionc = scanner.nextInt();
+            while (true) {
+                try {
+                    String opcionstring = scanner.next();
+                    opcionc = Integer.parseInt(opcionstring);
+                    break;
+                } catch (Exception e) {
+                    System.out.println("Opcion no valida");
+                    opcionc = 0;
+                }
+            }
             switch (opcionc) {
                 case 1:
                     System.out.println("Insertar");
-                    System.out.println("/nIngrese el nombre");//Hecho
+                    System.out.println("Ingrese el nombre");//Hecho
                     String nombre = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");//Hecho
+                    System.out.println("Ingrese el apellido paterno");//Hecho
                     String apellidoPaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");//Hecho
+                    System.out.println("Ingrese el apellido materno");//Hecho
                     String apellidoMaterno = validacion(scanner.next());
-                    System.out.println("/nIngrese el correo");//Hecho
+                    System.out.println("Ingrese el correo");//Hecho
                     System.out.println("Ejemplo: programacionOB2@gmai.com");
                     String correo = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");//Hecho
+                    System.out.println("Ingrese el telefono");//Hecho
                     String telefono = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");//Hecho
+                    System.out.println("Ingrese la fecha de nacimiento");//Hecho
                     System.out.println("Ejemplo: AAA-MM-DD");
                     String fechaNacimiento = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");//Hecho
+                    System.out.println("Ingrese el RFC");//Hecho
                     String RFC = validacionRFC(scanner.next());
-                    System.out.println("/nIngrese el dia de entrega");//Hecho
+                    System.out.println("Ingrese el dia de entrega");//Hecho
                     System.out.println("Ejemplo: Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo");
                     String diaVisita = validacionentrega(scanner.next());
-                    System.out.println("/nIngrese el limite de credito");//Hecho
+                    System.out.println("Ingrese el limite de credito");//Hecho
                     double limiteCredito = 0;
                     while(true) {
                         try {
@@ -421,26 +462,26 @@ public class Test {
                             System.out.println("Ingrese un entero");
                         }
                     }
-                    System.out.println("/nIngrese el nombre");//Hecho
+                    System.out.println("Ingrese el nombre");//Hecho
                     String nombre1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido paterno");//Hecho
+                    System.out.println("Ingrese el apellido paterno");//Hecho
                     String apellidoPaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el apellido materno");//Hecho
+                    System.out.println("Ingrese el apellido materno");//Hecho
                     String apellidoMaterno1 = validacion(scanner.next());
-                    System.out.println("/nIngrese el correo");//Hecho
+                    System.out.println("Ingrese el correo");//Hecho
                     System.out.println("Ejemplo: programacionOB2@gmai.com");
                     String correo1 = validacioncorreo(scanner.next());
-                    System.out.println("/nIngrese el telefono");//Hecho
+                    System.out.println("Ingrese el telefono");//Hecho
                     String telefono1 = validaciontelefono(scanner.next());
-                    System.out.println("/nIngrese la fecha de nacimiento");//Hecho
+                    System.out.println("Ingrese la fecha de nacimiento");//Hecho
                     System.out.println("Ejemplo: AAAA-MM-DD");
                     String fechaNacimiento1 = validacionfecha(scanner.next());
-                    System.out.println("/nIngrese el RFC");//Hecho
+                    System.out.println("Ingrese el RFC");//Hecho
                     String RFC1 = validacionRFC(scanner.next());
-                    System.out.println("/nIngrese el dia de entrega");//Hecho
+                    System.out.println("Ingrese el dia de entrega");//Hecho
                     System.out.println("Ejemplo: Lunes, Martes, Miercoles, Jueves, Viernes, Sabado, Domingo");
                     String diaVisita1 = validacionentrega(scanner.next());
-                    System.out.println("/nIngrese el limite de credito");//Hecho
+                    System.out.println("Ingrese el limite de credito");//Hecho
                     double limiteCredito1 = 0;
                     while(true) {
                         try {
@@ -451,7 +492,7 @@ public class Test {
                             continue;
                         }
                     }
-                    System.out.println("/nIngrese el tipo de proveedor");//Hecho
+                    System.out.println("Ingrese el tipo de proveedor");//Hecho
                     String tipoProveedor1 = validacion(scanner.next());
 
                     Proveedor proveedor = new Proveedor(id, nombre1, apellidoPaterno1, apellidoMaterno1, correo1, telefono1, fechaNacimiento1, RFC1, diaVisita1, limiteCredito1, tipoProveedor1);
@@ -487,7 +528,7 @@ public class Test {
 
                     break;
                 case 5:
-                    System.out.println("Gracias por usar la base de datos de proveedores");
+                    System.out.println("Gracias por usar la seccion de proveedores");
                     break;
 
                 default:
@@ -734,4 +775,5 @@ public class Test {
         }
     }
 }
+
 
