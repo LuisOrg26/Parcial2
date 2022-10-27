@@ -23,7 +23,7 @@ public class Empleado extends Persona{
     }
 
     //Seleccionar
-    public Empleado(int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, int edad, String RFC,String NSC, String CURP, int antiguedad, String puesto) {
+    public Empleado(int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, String RFC,String NSC, String CURP, int antiguedad, String puesto) {
         super(id, nombre, apellidop, apellidom, email, telefono, fecha, RFC);
         this.NSC = NSC;
         this.CURP = CURP;

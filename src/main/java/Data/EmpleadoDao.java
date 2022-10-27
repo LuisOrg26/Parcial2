@@ -39,7 +39,7 @@ public class EmpleadoDao {
                 int antiguedad = rs.getInt("antiguedad");
                 String puesto = rs.getString("puesto");
 
-                empleado = new Empleado(id, nombre, apellidop, apellidom, email, telefono, fecha, edad, RFC, NSC, CURP, antiguedad, puesto);
+                empleado = new Empleado(id, nombre, apellidop, apellidom, email, telefono, fecha, RFC, NSC, CURP, antiguedad, puesto);
                 empleados.add(empleado);
             }
         } catch (SQLException ex) {

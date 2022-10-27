@@ -245,7 +245,44 @@ public class Test {
                     System.out.println("Empleado insertado");
                     break;
                 case 2:
+                    System.out.println("Actualizar");
+                    System.out.println("Ingrese el id del empleado que desea actualizar");
+                    int id1 = validacionint(scanner.nextInt());
+                    System.out.println("Ingrese el nombre");
+                    String nombre1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido paterno");
+                    String apellidoPaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el apellido materno");
+                    String apellidoMaterno1 = validacion(scanner.next());
+                    System.out.println("Ingrese el email");
+                    String email1 = validacioncorreo(scanner.next());
+                    System.out.println("Ingrese el telefono");
+                    String telefono1 = validaciontelefono(scanner.next());
+                    System.out.println("Ingrese la fecha de nacimiento");
+                    System.out.println("Ejemplo: 1999-12-31");
+                    String fecha1 = validacionfecha(scanner.next());
+                    System.out.println("Ingrese el RFC");
+                    String RFC1 = validacionRFC(scanner.next());
+                    System.out.println("Ingrese el numero de seguro social");
+                    String NSS1 = validacionNSS(scanner.next());
+                    System.out.println("Ingrese el CURP");
+                    String CURP1 = validacionCURP(scanner.next());
+                    System.out.println("Ingrese la antiguedad");
+                    int antiguedad1 = 0;
+                    while (true) {
+                        try {
+                            antiguedad1 = validacionint(scanner.nextInt());
+                            break;
+                        } catch (Exception e) {
+                            System.out.println("Ingrese un entero");
+                        }
+                    }
+                    System.out.println("Ingrese el puesto");
+                    String puesto1 = validacion(scanner.next());
 
+                    EmpleadoDao empleadoDao7 = new EmpleadoDao();
+                    Empleado actualizarEmpleado = new Empleado(id1, nombre1, apellidoPaterno1, apellidoMaterno1, email1, telefono1, fecha1, RFC1, NSS1, CURP1, antiguedad1, puesto1);
+                    empleadoDao7.actualizar(actualizarEmpleado);
                     break;
                 case 3:
                     System.out.println("Eliminar");

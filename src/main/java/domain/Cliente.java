@@ -20,6 +20,7 @@ public class Cliente extends Persona{
         this.Tipo = Tipo;
     }
 
+
     //Seleccionar
     public Cliente(int id, String nombre, String apellidop, String apellidom, String email, String telefono, String fecha, String RFC,int DiasCredito, String Metodo, String Tipo) {
         super(id, nombre, apellidop, apellidom, email, telefono, fecha, RFC);
